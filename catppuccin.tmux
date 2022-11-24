@@ -35,7 +35,7 @@ setw() {
 
 # status
 set status "on"
-set status-bg "${thm_bg}"
+set status-bg "${thm_gray}"
 set status-justify "left"
 set status-left-length "100"
 set status-right-length "100"
@@ -45,7 +45,7 @@ set message-style "fg=${thm_cyan},bg=${thm_gray},align=centre"
 set message-command-style "fg=${thm_cyan},bg=${thm_gray},align=centre"
 
 # panes
-set pane-border-style "fg=${thm_gray}"
+set pane-border-style "fg=${thm_blue}"
 set pane-active-border-style "fg=${thm_blue}"
 
 # windows
@@ -56,11 +56,11 @@ setw window-status-style "fg=${thm_fg},bg=${thm_bg},none"
 # --------=== Statusline
 
 set status-left ""
-set status-right "#[fg=$thm_pink,bg=$thm_bg,nobold,nounderscore,noitalics]#[fg=$thm_bg,bg=$thm_pink,nobold,nounderscore,noitalics] #[fg=$thm_fg,bg=$thm_gray] #W #{?client_prefix,#[fg=$thm_red],#[fg=$thm_green]}#[bg=$thm_gray]#{?client_prefix,#[bg=$thm_red],#[bg=$thm_green]}#[fg=$thm_bg] #[fg=$thm_fg,bg=$thm_gray] #S "
+set status-right "#[fg=$thm_pink,bg=$thm_bg,nobold,nounderscore,noitalics]#[fg=$thm_bg,bg=$thm_pink,nobold,nounderscore,noitalics] #[fg=$thm_fg,bg=$thm_gray] #W #{?client_prefix,#[fg=$thm_red],#[fg=$thm_green]}#[bg=$thm_gray]#{?client_prefix,#[bg=$thm_red],#[bg=$thm_green]}#[fg=$thm_bg] #[fg=$thm_fg,bg=$thm_gray] #S #{cpu_icon} #{cpu_percentage} "
 
 # current_dir
-setw window-status-format "#[fg=$thm_bg,bg=$thm_blue] #I #[fg=$thm_fg,bg=$thm_gray] #{b:pane_current_path} "
-setw window-status-current-format "#[fg=$thm_bg,bg=$thm_orange] #I #[fg=$thm_fg,bg=$thm_bg] #{b:pane_current_path} "
+setw window-status-format "#[fg=$thm_bg,bg=$thm_blue] #I #[fg=$thm_fg,bg=$thm_gray] #W "
+setw window-status-current-format "#[fg=$thm_bg,bg=$thm_orange] #I #[fg=$thm_fg,bg=$thm_bg] #W "
 
 # parent_dir/current_dir
 # setw window-status-format "#[fg=colour232,bg=colour111] #I #[fg=colour222,bg=colour235] #(echo '#{pane_current_path}' | rev | cut -d'/' -f-2 | rev) "
