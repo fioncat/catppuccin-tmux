@@ -18,6 +18,9 @@ thm_blue="#89b4fa"
 thm_orange="#fab387"
 thm_black4="#585b70"
 
+thm_dark="#1a1826"
+thm_gray2="#626262"
+
 # ----------------------------=== Theme ===--------------------------
 
 # utils
@@ -55,19 +58,20 @@ setw window-status-style "fg=${thm_fg},bg=${thm_bg},none"
 
 # --------=== Statusline
 
-network_status="#[fg=$thm_pink,bg=$thm_gray]#[fg=$thm_gray,bg=$thm_pink]NET #[fg=$thm_fg,bg=$thm_gray] ↓ #{download_speed} ↑ #{upload_speed}"
+# network_status="#[fg=$thm_blue,bg=$thm_black]  ↓ #{download_speed} ↑ #{upload_speed}"
+cpu_status="#[fg=${cpu_fg_color},bg=${cpu_bg_color}]  #{cpu_icon} #{cpu_percentage} |"
+ram_status="#[fg=${ram_fg_color},bg=${ram_bg_color}]  #{ram_icon} #{ram_percentage}"
+time_status="#[fg=$thm_fg,bg=$thm_black]  %m-%d %H:%M"
 
-cpu_status="#[fg=$thm_orange,bg=$thm_gray]#[fg=$thm_bg,bg=$thm_orange]CPU #[fg=$thm_fg,bg=$thm_gray] #{cpu_icon} #{cpu_percentage}"
-ram_status="#[fg=$thm_blue,bg=$thm_gray]#[fg=$thm_bg,bg=$thm_blue]RAM #[fg=$thm_fg,bg=$thm_gray] #{ram_icon} #{ram_percentage}"
-time_status="#[fg=$thm_pink,bg=$thm_gray,nobold,nounderscore,noitalics]#[fg=$thm_gray,bg=$thm_pink,nobold,nounderscore,noitalics] #[fg=$thm_fg,bg=$thm_gray] %m-%d %H:%M"
-tmux_status="#{?client_prefix,#[fg=$thm_red],#[fg=$thm_green]}#[bg=$thm_gray]#{?client_prefix,#[bg=$thm_red],#[bg=$thm_green]}#[fg=$thm_bg] #[fg=$thm_fg,bg=$thm_gray] %m-%d %H:%M"
+space="#[fg=$thm_fg,bg=$thm_black] "
+tmux_status="#{?client_prefix,#[bg=$thm_red],#[bg=$thm_black]}#{?client_prefix,#[fg=$thm_gray],#[fg=$thm_fg]}  #[fg=$thm_fg,bg=$thm_black] #S ${space}${space}"
 
-set status-left ""
-set status-right "${network_status} ${cpu_status} ${ram_status} ${tmux_status}"
+set status-left "${tmux_status}  "
+set status-right "${network_status} ${cpu_status} ${ram_status} ${time_status}"
 
 # current_dir
-setw window-status-format "#[fg=$thm_bg,bg=$thm_blue] #I #[fg=$thm_fg,bg=$thm_gray] #W "
-setw window-status-current-format "#[fg=$thm_bg,bg=$thm_orange] #I #[fg=$thm_fg,bg=$thm_bg] #W "
+setw window-status-format "#[fg=$thm_cyan,bg=$thm_gray]  #I #[fg=$thm_fg,bg=$thm_gray]#W  "
+setw window-status-current-format "#[fg=$thm_pink,bg=$thm_bg]  #I #W  "
 
 # parent_dir/current_dir
 # setw window-status-format "#[fg=colour232,bg=colour111] #I #[fg=colour222,bg=colour235] #(echo '#{pane_current_path}' | rev | cut -d'/' -f-2 | rev) "
