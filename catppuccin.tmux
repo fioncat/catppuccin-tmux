@@ -55,8 +55,15 @@ setw window-status-style "fg=${thm_fg},bg=${thm_bg},none"
 
 # --------=== Statusline
 
+network_status="#[fg=$thm_pink,bg=$thm_gray]#[fg=$thm_gray,bg=$thm_pink]NET #[fg=$thm_fg,bg=$thm_gray] ↓ #{download_speed} ↑ #{upload_speed}"
+
+cpu_status="#[fg=$thm_orange,bg=$thm_gray]#[fg=$thm_bg,bg=$thm_orange]CPU #[fg=$thm_fg,bg=$thm_gray] #{cpu_icon} #{cpu_percentage}"
+ram_status="#[fg=$thm_blue,bg=$thm_gray]#[fg=$thm_bg,bg=$thm_blue]RAM #[fg=$thm_fg,bg=$thm_gray] #{ram_icon} #{ram_percentage}"
+time_status="#[fg=$thm_pink,bg=$thm_gray,nobold,nounderscore,noitalics]#[fg=$thm_gray,bg=$thm_pink,nobold,nounderscore,noitalics] #[fg=$thm_fg,bg=$thm_gray] %m-%d %H:%M"
+tmux_status="#{?client_prefix,#[fg=$thm_red],#[fg=$thm_green]}#[bg=$thm_gray]#{?client_prefix,#[bg=$thm_red],#[bg=$thm_green]}#[fg=$thm_bg] #[fg=$thm_fg,bg=$thm_gray] %m-%d %H:%M"
+
 set status-left ""
-set status-right "#[fg=$thm_pink,bg=$thm_bg,nobold,nounderscore,noitalics]#[fg=$thm_bg,bg=$thm_pink,nobold,nounderscore,noitalics] #[fg=$thm_fg,bg=$thm_gray] #W #{?client_prefix,#[fg=$thm_red],#[fg=$thm_green]}#[bg=$thm_gray]#{?client_prefix,#[bg=$thm_red],#[bg=$thm_green]}#[fg=$thm_bg] #[fg=$thm_fg,bg=$thm_gray] #S #{cpu_icon} #{cpu_percentage} "
+set status-right "${network_status} ${cpu_status} ${ram_status} ${tmux_status}"
 
 # current_dir
 setw window-status-format "#[fg=$thm_bg,bg=$thm_blue] #I #[fg=$thm_fg,bg=$thm_gray] #W "
