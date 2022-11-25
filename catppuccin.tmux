@@ -45,7 +45,7 @@ set message-style "fg=${thm_cyan},bg=${thm_gray},align=centre"
 set message-command-style "fg=${thm_cyan},bg=${thm_gray},align=centre"
 
 # panes
-set pane-border-style "fg=${thm_blue}"
+set pane-border-style "fg=${thm_gray}"
 set pane-active-border-style "fg=${thm_blue}"
 
 # windows
@@ -55,15 +55,20 @@ setw window-status-style "fg=${thm_fg},bg=${thm_bg},none"
 
 # --------=== Statusline
 
-network_status="#[fg=$thm_pink,bg=$thm_gray]#[fg=$thm_gray,bg=$thm_pink]  #[fg=$thm_fg,bg=$thm_gray] ↓ #{download_speed} ↑ #{upload_speed}"
+uname=$(uname)
+if [ "${uname}" == "Linux" ]; then
+	# enable network only in Linux
+	network_status="#[fg=$thm_pink,bg=$thm_gray]#[fg=$thm_gray,bg=$thm_pink] #[fg=$thm_fg,bg=$thm_gray] ↓ #{download_speed} ↑ #{upload_speed}"
+fi
 
-cpu_status="#[fg=$thm_orange,bg=$thm_gray]#[fg=$thm_bg,bg=$thm_orange]  #[fg=$thm_fg,bg=$thm_gray] #{cpu_icon} #{cpu_percentage}"
-ram_status="#[fg=$thm_blue,bg=$thm_gray]#[fg=$thm_bg,bg=$thm_blue]  #[fg=$thm_fg,bg=$thm_gray] #{ram_icon} #{ram_percentage}"
-time_status="#[fg=$thm_pink,bg=$thm_gray,nobold,nounderscore,noitalics]#[fg=$thm_gray,bg=$thm_pink,nobold,nounderscore,noitalics] #[fg=$thm_fg,bg=$thm_gray] %m-%d %H:%M"
-tmux_status="#{?client_prefix,#[fg=$thm_red],#[fg=$thm_green]}#[bg=$thm_gray]#{?client_prefix,#[bg=$thm_red],#[bg=$thm_green]}#[fg=$thm_bg]  #[fg=$thm_fg,bg=$thm_gray] %m-%d %H:%M"
+cpu_status="#[fg=$thm_orange,bg=$thm_gray]#[fg=$thm_bg,bg=$thm_orange] #[fg=$thm_fg,bg=$thm_gray] #{cpu_icon} #{cpu_percentage}"
+ram_status="#[fg=$thm_blue,bg=$thm_gray]#[fg=$thm_bg,bg=$thm_blue] #[fg=$thm_fg,bg=$thm_gray] #{ram_icon} #{ram_percentage}"
+time_status="#[fg=$thm_green,bg=$thm_gray,nobold,nounderscore,noitalics]#[fg=$thm_gray,bg=$thm_green,nobold,nounderscore,noitalics] #[fg=$thm_fg,bg=$thm_gray] %m-%d %H:%M"
 
-set status-left ""
-set status-right "${network_status} ${cpu_status} ${ram_status} ${tmux_status}"
+tmux_status="#[fg=$thm_fg,bg=$thm_black] #S #{?client_prefix,#[fg=$thm_gray],#[fg=$thm_gray]}#{?client_prefix,#[bg=$thm_red],#[bg=$thm_green]} #{?client_prefix,#[fg=$thm_red],#[fg=$thm_green]}#[bg=$thm_gray] #[fg=$thm_gray,bg=$thm_gray]   |"
+
+set status-left "${tmux_status}"
+set status-right "${network_status} ${cpu_status} ${ram_status} ${time_status}"
 
 # current_dir
 setw window-status-format "#[fg=$thm_bg,bg=$thm_blue] #I #[fg=$thm_fg,bg=$thm_gray] #W "
