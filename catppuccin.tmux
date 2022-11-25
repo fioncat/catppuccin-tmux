@@ -45,7 +45,7 @@ set message-style "fg=${thm_cyan},bg=${thm_gray},align=centre"
 set message-command-style "fg=${thm_cyan},bg=${thm_gray},align=centre"
 
 # panes
-set pane-border-style "fg=${thm_gray}"
+set pane-border-style "fg=${thm_blue}"
 set pane-active-border-style "fg=${thm_blue}"
 
 # windows
