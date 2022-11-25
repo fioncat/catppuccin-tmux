@@ -55,14 +55,18 @@ setw window-status-style "fg=${thm_fg},bg=${thm_bg},none"
 
 # --------=== Statusline
 
+set -g @cpu_low_fg_color "${thm_fg}"
+set -g @cpu_medium_fg_color "${thm_pink}"
+set -g @cpu_high_fg_color "${thm_red}"
+
 uname=$(uname)
 if [ "${uname}" == "Linux" ]; then
 	# enable network only in Linux
 	network_status="#[fg=$thm_pink,bg=$thm_gray]#[fg=$thm_gray,bg=$thm_pink] #[fg=$thm_fg,bg=$thm_gray] ↓ #{download_speed} ↑ #{upload_speed}"
 fi
 
-cpu_status="#[fg=$thm_orange,bg=$thm_gray]#[fg=$thm_bg,bg=$thm_orange] #[fg=$thm_fg,bg=$thm_gray] #{cpu_icon} #{cpu_percentage}"
-ram_status="#[fg=$thm_blue,bg=$thm_gray]#[fg=$thm_bg,bg=$thm_blue] #[fg=$thm_fg,bg=$thm_gray] #{ram_icon} #{ram_percentage}"
+cpu_status="#[fg=$thm_orange,bg=$thm_gray]#[fg=$thm_bg,bg=$thm_orange] #[bg=$thm_gray]#{cpu_fg_color} #{cpu_percentage} #[bg=$thm_gray]#{cpu_temp_fg_color}#{cpu_temp}"
+ram_status="#[fg=$thm_blue,bg=$thm_gray]#[fg=$thm_bg,bg=$thm_blue] #[bg=$thm_gray]#{ram_fg_color} #{ram_percentage}"
 time_status="#[fg=$thm_green,bg=$thm_gray,nobold,nounderscore,noitalics]#[fg=$thm_gray,bg=$thm_green,nobold,nounderscore,noitalics] #[fg=$thm_fg,bg=$thm_gray] %m-%d %H:%M"
 
 tmux_status="#[fg=$thm_fg,bg=$thm_black] #S #{?client_prefix,#[fg=$thm_gray],#[fg=$thm_gray]}#{?client_prefix,#[bg=$thm_red],#[bg=$thm_green]} #{?client_prefix,#[fg=$thm_red],#[fg=$thm_green]}#[bg=$thm_gray] #[fg=$thm_gray,bg=$thm_gray]   |"
